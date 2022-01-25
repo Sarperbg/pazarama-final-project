@@ -1,13 +1,13 @@
 .container {
   width: 80%;
   height: 85vh;
-  margin: 70px auto;
+  margin: 30px auto;
   display: flex;
   border-radius: 10px;
 }
 
 h1 {
-  font-size: 55px;
+  font-size: 50px;
   letter-spacing: 2px;
   font-family: "Nerko One", cursive;
 }
@@ -17,7 +17,7 @@ p {
   font-size: 34px;
 }
 
-.brand-box {
+.main-box {
   flex: 1 50%;
   display: flex;
   color: rgb(26, 10, 10);
@@ -27,7 +27,7 @@ p {
   font-size: 25px;
 }
 
-.magic-form {
+.main-form {
   flex: 1 50%;
   display: flex;
   flex-direction: column;
@@ -109,6 +109,8 @@ textarea {
   border-radius: 4px;
   background-color: #f8f8f8;
   resize: none;
+  font-size: 24px;
+  text-align: center;
 }
 button[type="submit"] {
   background-color: #4caf50;

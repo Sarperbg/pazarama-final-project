@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("İsim boş bırakılamaz"),
@@ -9,6 +11,10 @@ const validationSchema = Yup.object({
   idnumber: Yup.number().required("Kimlik numarası boş bırakılamaz"),
   adress: Yup.string().required("Adres alanı boş bırakılamaz"),
 });
+
+const generateTicket = () => {
+  console.log(uuidv4());
+};
 const TextField = () => {
   return (
     <Formik
@@ -21,12 +27,8 @@ const TextField = () => {
         adress: "",
       }}
       validationSchema={validationSchema}
-      onSubmit={(values, { resetForm, setSubmitting }) => {
+      onSubmit={(values, resetForm, setSubmitting) => {
         console.log(values);
-        setTimeout(() => {
-          setSubmitting(false);
-          resetForm();
-        }, 2000);
       }}
     >
       {({
@@ -41,8 +43,6 @@ const TextField = () => {
       }) => (
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Lütfen Adınızı Giriniz</label>
-          <br />
-
           <input
             type="text"
             name="name"
@@ -53,9 +53,9 @@ const TextField = () => {
           {errors.name && touched.name && (
             <div className="input-feedback">{errors.name}</div>
           )}
-          <br />
+
           <label htmlFor="surname">Lütfen Soyadınızı Giriniz</label>
-          <br />
+
           <input
             type="text"
             name="surname"
@@ -126,14 +126,25 @@ const TextField = () => {
               value={values.agree}
               onChange={handleChange}
             />
+
+            <label htmlFor="agree" className="checkbox-label">
+              Sözleşmeyi okudum kabul ediyorum..
+            </label>
           </div>
-          <label htmlFor="agree" className="checkbox-label">
-            Sözleşmeyi okudum kabul ediyorum..
-          </label>
           <br />
-          <button type="submit" disabled={!dirty || isSubmitting}>
-            Kaydol
-          </button>
+          <Link
+            to="basvuru-basarili"
+            className="btn-submit"
+            onClick={(event) => {}}
+          >
+            <button
+              type="submit"
+              onClick={generateTicket}
+              disabled={!dirty || isSubmitting}
+            >
+              Kaydol
+            </button>
+          </Link>
         </form>
       )}
     </Formik>
